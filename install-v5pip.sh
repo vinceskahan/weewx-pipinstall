@@ -38,9 +38,7 @@ python3 -m venv /home/${WEEWXUSER}/weewx-venv \
 if [ "x${INSTALL_BELCHERTOWN_SKIN}" = "x1" ]
 then
   echo "...installing belchertown skin..."
-  sudo apt-get install -y git
-  git clone https://github.com/poblabs/weewx-belchertown.git
-  weectl extension install -y weewx-belchertown
+  weectl extension install https://github.com/poblabs/weewx-belchertown/archive/refs/heads/master.zip
 fi
 
 # install the rsyslogd hook and reset the logging daemon
