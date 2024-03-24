@@ -24,4 +24,4 @@ user vagrant.  A typical Vagrantfile would look like:
 
 Quick install for just weewx+nginx would be:
 
-   wget -q0 - https://raw.githubusercontent.com/vinceskahan/weewx-pipinstall/main/install-v5pip.sh | bash
+   wget -qO - https://raw.githubusercontent.com/vinceskahan/weewx-pipinstall/main/install-v5pip.sh | bash
