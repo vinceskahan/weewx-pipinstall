@@ -7,6 +7,7 @@
 
 RUN_AS_VAGRANT_PROVISIONER=0
 INSTALL_BELCHERTOWN_SKIN=0
+ADD_USER_TO_TYPICAL_GROUPS=0
 
 #-------------- STOP EDITING HERE -------------------------
 
@@ -48,10 +49,14 @@ sudo cp /home/${WEEWXUSER}/weewx-data/util/rsyslog.d/weewx.conf /etc/rsyslog.d/w
 
 # add weewx to all the groups typical 'pi' is in
 # which should permit binding to non-privileged ports for various drivers
-for g in adm dialout cdrom sudo audio video plugdev games users input render netdev gpio i2c spi
-do
-  sudo usermod -aG $g ${WEEWXUSER}
-done
+if [ "x${ADD_USER_TO_TYPICAL_GROUPS}" = "x1" ]
+then
+  echo "...adding ${WEEWXUSER} to typical groups..."
+  for g in adm dialout cdrom sudo audio video plugdev games users input render netdev gpio i2c spi
+  do
+    sudo usermod -aG $g ${WEEWXUSER}
+  done
+fi
 
 # install and configure nginx and connect it to weewx
 echo "...integrating weewx and nginx setups..."
