@@ -46,6 +46,13 @@ echo "...setting up rsyslogd..."
 sudo cp /home/${WEEWXUSER}/weewx-data/util/rsyslog.d/weewx.conf /etc/rsyslog.d/weewx.conf \
     && sudo systemctl restart rsyslog
 
+# add weewx to all the groups typical 'pi' is in
+# which should permit binding to non-privileged ports for various drivers
+for g in adm dialout cdrom sudo audio video plugdev games users input render netdev gpio i2c spi
+do
+  sudo usermod -aG $g ${WEEWXUSER}
+done
+
 # install and configure nginx and connect it to weewx
 echo "...integrating weewx and nginx setups..."
 sudo apt-get install -y nginx
