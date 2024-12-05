@@ -26,7 +26,11 @@ echo "...setting up to run as user ${WEEWXUSER}..."
 echo "...installing packages..."
 sudo apt-get update \
     && sudo apt-get install -y python3-pip python3-venv \
-          sqlite3 wget rsyslog vim sudo libopenjp2-7
+          sqlite3 wget rsyslog vim sudo \
+          libopenjp2-7 libjopenjp2-7-dev libjpeg-dev
+
+# might need libfreetype6--dev too possibily
+# ref: https://github.com/weewx/weewx/wiki/pip-troubleshooting#pillow
 
 echo "...installing weewx..."
 python3 -m venv /home/${WEEWXUSER}/weewx-venv \
