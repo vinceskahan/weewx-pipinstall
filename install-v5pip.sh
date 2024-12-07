@@ -27,10 +27,11 @@ echo "...installing packages..."
 sudo apt-get update \
     && sudo apt-get install -y python3-pip python3-venv \
           sqlite3 wget rsyslog vim sudo \
-          libopenjp2-7 libjopenjp2-7-dev libjpeg-dev
+          libopenjp2-7 libjopenjp2-7-dev libjpeg-dev libfreetype6-dev
 
-# might need libfreetype6--dev too possibily
-# ref: https://github.com/weewx/weewx/wiki/pip-troubleshooting#pillow
+# the last line above is to get pillow to compile over raspios lite 32 bit
+# using the 2024-1119 os version
+#    ref: https://github.com/weewx/weewx/wiki/pip-troubleshooting#pillow
 
 echo "...installing weewx..."
 python3 -m venv /home/${WEEWXUSER}/weewx-venv \
