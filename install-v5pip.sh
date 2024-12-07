@@ -67,6 +67,7 @@ echo "...integrating weewx and nginx setups..."
 sudo apt-get install -y nginx
 sudo mkdir /var/www/html/weewx
 sudo chown ${WEEWXUSER}:${WEEWXUSER} /var/www/html/weewx
+sudo chmod 755 /var/www/html/weewx
 ln -s /var/www/html/weewx /home/${WEEWXUSER}/weewx-data/public_html
 
 # set up logrotate to match
